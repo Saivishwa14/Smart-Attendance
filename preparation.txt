@@ -1,0 +1,61 @@
+To give you the best possible preparation for your review, I’ve broken this down into the **"What"** and the **"Why"**. Reviewers love to ask "Why didn't you use X instead?" so this information will help you defend your choices.
+
+---
+
+## 🛠️ Technical Stack: The "What" and the "Why"
+
+### 1. Programming Language: Python
+
+* **Why:** It is the industry standard for AI and Computer Science projects due to its massive library support (OpenCV, Pandas) and ease of integration between the UI and the Database.
+
+### 2. Frontend: Streamlit
+
+* **What it is:** A framework to turn Python scripts into interactive web apps.
+* **Why it is used:** Unlike traditional web tools (HTML/CSS/JS), Streamlit allows you to display a **live camera feed** and **real-time dataframes** with very little code. It makes the project look like a professional dashboard.
+
+### 3. Computer Vision Library: OpenCV
+
+* **What it is:** Open-Source Computer Vision Library.
+* **Why it is used:** It handles the heavy lifting of image processing—accessing the webcam, converting images to grayscale (to reduce data complexity), and detecting shapes.
+
+### 4. Detection Algorithm: Haar Cascade
+
+* **What it is:** A machine learning object detection algorithm used to identify faces (`haarcascade_frontalface_default.xml`).
+* **Why it is used:** It is incredibly fast and works in real-time on standard laptops without needing a powerful GPU. It "scans" the image for features like the bridge of the nose and the dark areas around the eyes.
+
+### 5. Recognition Algorithm: LBPH (Local Binary Patterns Histograms)
+
+* **What it is:** The "brain" that identifies *who* the face belongs to.
+* **Why it is used:** * **Lighting Independence:** It looks at local pixel contrasts rather than global brightness, making it work in dark or bright rooms.
+* **Speed:** It is faster to train than Deep Learning models (like CNNs).
+* **Simplicity:** It represents each face as a unique "barcode" (histogram), which is very efficient for a student database.
+
+
+
+### 6. Database: SQLite3
+
+* **What it is:** A lightweight, disk-based relational database.
+* **Why it is used:** It doesn't require a separate server (like MySQL). The entire database is just one file (`attendance.db`), making your project **portable**—you can move it to another laptop and it will still work perfectly.
+
+### 7. Data Analysis: Pandas
+
+* **What it is:** A data manipulation library.
+* **Why it is used:** It is used to convert SQL data into clean tables (DataFrames) and to export your attendance reports into **CSV files**.
+
+---
+
+## 🚀 System Logic Flow (The "How")
+
+1. **Preprocessing:** When you capture a face, the system converts it to **Grayscale** and **Resizes** it to 200x200 pixels. This ensures every image is "equal" before the math starts.
+2. **Training:** The LBPH algorithm looks at every pixel, compares it to its neighbors, and creates a histogram (a mathematical pattern).
+3. **Duplicate Prevention (Biometric Check):** Before saving a new student, the system runs the `predict()` function. If the distance (confidence) is low, it means the math "sees" a pattern it already has, so it blocks the entry.
+4. **Relational Mapping:** The system uses the **Student ID** as a "Foreign Key" to link the face images in the folder to the name in the database.
+
+---
+
+## 📝 Tips for the Reviewer
+
+* **Mention the "Threshold":** If they ask about accuracy, say: *"I used a confidence threshold of 65. Lowering it makes the system stricter (less likely to make a mistake), while raising it makes it easier to recognize but increases the risk of 'False Positives'."*
+* **Mention Storage:** *"I used grayscale images to save storage space in the dataset folder while maintaining recognition accuracy."*
+
+**Would you like me to create a "Question & Answer" sheet based on common things professors ask during these reviews?**
